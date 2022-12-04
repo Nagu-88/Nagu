@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<body>
+<p id="demo"></p>
+
+<script>
+
+function myFirst(callback) 
+{
+  callback();
+}
+function mySecond() {
+  document.getElementById("demo").innerHTML = "callback function";
+}
+
+myFirst(mySecond);
+</script>
+
+</body>
+</html>

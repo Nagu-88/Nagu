@@ -1,0 +1,25 @@
+.button
+{
+	top:24%;
+    left:10%;
+	width:100px;
+    height:40px;
+    position: relative;
+    z-index: 2;
+	border-radius:8px;
+	background-color: lightblue;
+}
+div 
+{
+   margin-bottom: 10px;
+}
+label
+{
+    display: inline-block;
+    width: 100px;
+    /*text-align: right;*/
+}
+input
+ {
+    padding: 10px 10px;
+ }

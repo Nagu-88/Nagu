@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>jsp</title>
+</head>
+<body>
+<div style="margin: auto;width:30%;padding-top:50px">
+<form action=mysqlConn1.jsp method="post">
+   
+    <input type="text"  id="ItemId"><br>
+    <p ><button type="submit" id="search">Submit</button></p><br>
+    
+</form>
+</div>
+<script>
+$("#search").click(function() {
+         var ItemId= $('#ItemId').val();
+         $.ajax({
+            url: "165.22.14.77:8080/Nagu/mysqlConn1.jsp",
+            type: 'POST',
+            data: {ItemId: ItemId},    
+                
+            }
+        });
+ 
+</script>
+</body>
+</html>

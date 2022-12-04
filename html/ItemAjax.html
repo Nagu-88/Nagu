@@ -1,0 +1,49 @@
+
+<html>  
+<head>  
+<script>  
+var request;  
+function sendInfo()  
+{  
+var v=document.vinform.t1.value;  
+var url="mysqlconn1.jsp?id="+v;  
+  
+if(window.XMLHttpRequest){  
+request=new XMLHttpRequest();  
+}  
+else if(window.ActiveXObject){  
+request=new ActiveXObject("Microsoft.XMLHTTP");  
+}  
+  
+try  
+{  
+request.onreadystatechange=getInfo;  
+request.open("GET",url,true);  
+request.send();  
+}  
+catch(e)  
+{  
+alert("Unable to connect to server");  
+}  
+}  
+  
+function getInfo(){  
+if(request.readyState==4){  
+var id=request.responseText;  
+document.getElementById('amit').innerHTML=id;  
+}  
+}  
+  
+</script>  
+</head>  
+<body>  
+<form name="vinform">
+
+<input type="text" name="t1">  
+<input type="button" value="Submit" onClick="sendInfo()">  
+</form>  
+  
+<span id="amit"> </span>  
+
+</body>  
+</html>  

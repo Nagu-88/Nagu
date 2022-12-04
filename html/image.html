@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>convert to gray scale</title>
+
+</head>
+<body>
+    <script>
+        function display_image(src, width, height, alt)
+        {
+            var a = document.createElement("img");
+            a.src = src;
+            a.width = width;
+            a.height = height;
+            a.alt = alt;
+            document.body.appendChild(a);
+        }
+</script>
+
+    <button type="button" onclick="display_image('bird.jpg', 
+                 250, 
+                 250, 
+                 'JavaScriptImage');">Click</button>
+</body>
+</html>

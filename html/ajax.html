@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h1>The XMLHttpRequest Object</h1>
+
+<p id="demo">Let AJAX change this text.</p>
+
+<button type="button" onclick="loadDoc()">Change Content</button>
+
+<script>
+function loadDoc() {
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+      document.getElementById("demo").innerHTML = this.responseText;
+    }
+  };
+  xhttp.open("GET", "calc.html");
+  xhttp.send();
+}
+</script>
+
+</body>
+</html>
+<%@page import="java.sql.DriverManager"%>
+<%@page import="java.sql.ResultSet"%>
+<%@page import="java.sql.Statement"%>
+<%@page import="java.sql.Connection"%>
+<%@page import="java.sql.PreparedStatement"%>
+
+
+<%
+String driverName = "com.mysql.jdbc.Driver";
+String connectionUrl = "jdbc:mysql://165.22.14.77/";
+String dbName = "dbMallikarjun";
+String userId = "Mallikarjun";
+String password = "pwdMallikarjun";
+String id = request.getParameter("id");
+
+try {
+Class.forName(driverName);
+} catch (ClassNotFoundException e) {
+e.printStackTrace();
+}
+
+Connection connection = null;
+Statement statement = null;
+ResultSet resultSet = null;
+out.print("Item Id");
+out.print("Item Name");
+out.print("Unit Price");
+out.print("Stock Quantity");
+out.print("Supplier ID");
+try {
+connection = DriverManager.getConnection(
+connectionUrl + dbName, userId, password);
+statement = connection.createStatement();
+String sql = "SELECT * FROM Item where ItemID = '"+id+"'";
+
+resultSet = statement.executeQuery(sql);
+while (resultSet.next()) {
+out.println(resultSet.getString("ItemID"));
+out.println(resultSet.getString("ItemName"));
+out.println(resultSet.getString("UnitPrice"));
+out.println(resultSet.getString("StockQty"));
+out.println(resultSet.getString("SupplierID"));
+}
+
+} catch (Exception e) {
+e.printStackTrace();
+}
+%>

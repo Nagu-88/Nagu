@@ -1,0 +1,57 @@
+<html>
+<head>
+   <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>   
+    <script>
+      $(document).ready(function(){
+
+    $("#txt_search").keyup(function(){
+        var search = $(this).val();
+
+        if(search != ""){
+
+            $.ajax({
+                url: 'demo.php',
+                type: 'post',
+                data: {search:search, type:1},
+                dataType: 'json',
+                success:function(response){
+                
+                    var len = response.length;
+                    $("#searchResult").empty();
+                    for( var i = 0; i<len; i++){
+                        var id = response[i]['id'];
+
+                        $("#searchResult").append("<li value='"+id+"'>");
+
+                    }
+
+                    // binding click event to li
+                    $("#searchResult li").bind("click",function(){
+                        setText(this);
+                    });
+
+                }
+            });
+        }
+
+    });
+
+});
+
+
+   </script>
+</head>
+<body>
+
+   
+  
+<div>Enter Name </div>
+<div>
+   <input type="text" id="txt_search" name="txt_search">
+</div>
+<ul id="searchResult"></ul>
+
+<div class="clear"></div>
+<div id="userDetail"></div>
+</body>
+</html>

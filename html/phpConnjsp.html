@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>JSP & PHP</title>
+	<script >
+		function hi() 
+{
+    var url = "jsp.jsp";     
+    ajax(url);
+}
+
+function hello()
+{
+    var url = "http://165.22.14.77/Nagu/php.php";
+    ajax(url);
+}
+
+function ajax(url)
+{
+    if(window.XMLHttpRequest){  
+    request = new XMLHttpRequest();  
+    }  
+    else 
+    if(window.ActiveXObject)
+    {  
+        request = new ActiveXObject("Microsoft.XMLHTTP");  
+    }  
+    try  
+    {  
+        request.onreadystatechange = get_information;  
+        request.open("GET",url,true);  
+        request.send();  
+    }  
+    catch(e)  
+    {  
+        alert("Unable to connect to server");  
+    } 
+}
+  
+function get_information()
+{  
+    if(request.readyState == 4)
+    {  
+        var requested_value = request.responseText;  
+        document.getElementById('display').innerHTML = requested_value;  
+    }  
+}
+	</script>
+</head>
+<body align = "center">
+	JSP <button onclick="hi()">Click here</button><br>
+	PHP<button onclick="hello()">Click here</button>
+	<a id='display'></a>
+</body>
+</html>

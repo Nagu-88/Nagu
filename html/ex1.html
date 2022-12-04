@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<body>
+<h1>createElement() example</h1>
+<p>Click the below button to create more buttons</p>
+<button onclick="createButton()">Calculator</button>
+<br><br>
+<script>
+   function createButton()
+   {
+      const input = document.createElement("input");
+      input.setAttribute("type", "text");
+      document.body.appendChild(input);
+      var btn = document.createElement("BUTTON");
+      btn.innerHTML= "C";
+      document.body.appendChild(btn);
+      var br= document.createElement("BR");
+      document.body.appendChild(br);
+      var list=['+','-','*','/'];
+      var listCounter=0;
+      for(var ButtonCounter=1; ButtonCounter<=16; ButtonCounter++)
+      {
+         var btn = document.createElement("BUTTON");
+         if(ButtonCounter%4!=0){
+            btn.innerHTML= ButtonCounter-1;
+            document.body.appendChild(btn);
+         }
+         else if(ButtonCounter%5==0)
+         {
+            btn.innerHTML= ButtonCounter-6;
+            document.body.appendChild(btn);
+         }
+         else
+         {
+            btn.innerHTML= list[listCounter];
+            document.body.appendChild(btn);
+            var br= document.createElement("BR");
+            document.body.appendChild(br);
+            listCounter++;
+         }
+      }
+   }
+</script>
+</body>
+</html>

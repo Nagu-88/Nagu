@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<body onload="createButton()">
+<h1>createElement() example</h1>
+<p>Click the below button to create more buttons</p>
+<!-- <button onclick="createButton()">CREATE</button> -->
+<br><br>
+<script>
+   function display(val) {
+          document.getElementById("result").value += val
+      }
+   function createButton()
+   {
+      const input = document.createElement("input");
+      input.setAttribute("id", "username");
+      input.setAttribute("type", "text");
+      document.body.appendChild(input);
+      var btn = document.createElement("BUTTON");
+      btn.innerHTML= "C";
+      document.body.appendChild(btn);
+      var br= document.createElement("BR");
+      document.body.appendChild(br);
+      var list=['+','-','*','/'];
+      var listCounter=0;
+      for(var ButtonCounter=1; ButtonCounter<=16; ButtonCounter++)
+      {
+         var btn = document.createElement("BUTTON");
+         if(ButtonCounter%4!=0){
+         if(ButtonCounter > 4 && ButtonCounter < 8)
+            {
+               btn.innerHTML=ButtonCounter - 1;
+            }
+            else if(ButtonCounter > 8 && ButtonCounter < 12)
+            {
+               btn.innerHTML=ButtonCounter - 2;
+            }
+            else if(ButtonCounter == 13)
+            {
+               btn.innerHTML=0;
+            }
+            else if(ButtonCounter == 14)
+            {
+               btn.innerHTML="=";
+            }
+            else if(ButtonCounter == 15)
+            {
+               btn.innerHTML=".";
+            }
+            else
+            {
+               btn.innerHTML=ButtonCounter ;
+            }           
+            document.body.appendChild(btn);
+         }
+         else if(ButtonCounter%4==0)
+            {
+               btn.innerHTML= list[listCounter];
+               document.body.appendChild(btn);
+               var br= document.createElement("BR");
+               document.body.appendChild(br);
+               listCounter++;
+            }
+
+         else
+         {
+            document.body.appendChild("error");
+         }
+      }
+      btn.setAttribute("value", "buttons[listCounter]")
+      var show = "display("+buttons[listCounter]+")";
+      var show1 = "myFunction(event)"
+      btn.setAttribute("onclick", show);
+   }
+</script>
+</body>
+</html>

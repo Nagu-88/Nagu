@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>IDE</title>
+	<style type="text/css">
+		#Div1,#Div2,#Div3
+		{
+			height: 800px;
+			width: 31%;
+			border: 1px solid;
+			padding: 10px;
+			float: left;
+		}
+		#dropDiv
+		{
+			height: 800px;
+			width: 100%;
+		}
+	</style>
+
+	<script type="text/javascript">
+		var opttext = "";
+
+		function allowDrop(ev) 
+		{
+		  ev.preventDefault();
+		}
+
+		function drag(ev) 
+		{
+		  ev.dataTransfer.setData("text", ev.target.id);
+		}
+
+		function drop(ev) 
+		{
+			ev.preventDefault();
+			var data=ev.dataTransfer.getData("text");
+			var nodeCopy = document.getElementById(data).childNodes[1].cloneNode(true);
+			ev.target.appendChild(nodeCopy);
+			document.getElementById('code').innerText = document.getElementById('dropDiv').innerHTML;
+			opttext = document.getElementById("code").innerText;
+		}
+	</script>
+
+	<script type="text/javascript">
+        function downloadFile() {
+        	var filename = document.getElementById("savingName").value;
+			var savingFile = document.body.appendChild(document.createElement("a"));
+			savingFile.download = filename + ".html";
+			savingFile.href = "data:html," + opttext;
+			savingFile.click(); 
+        }
+	</script>
+</head>
+<body>
+
+
+	<div id="Div1">
+		<div>
+		</div>
+		<div id="buttonAndInput">
+			<div id="buttonIcon" draggable="true" ondragstart="drag(event)">
+				<button id="button">Click Me</button><br>
+			</div>
+			<div id="inputIcon" draggable="true" ondragstart="drag(event)">
+				<input type="text" name="text" id="fileName" placeholder="TypeHere...">
+			</div>
+		</div>	
+	</div>
+
+
+	<div id="Div2">
+		<div>
+		</div><br>
+		<div id="dropDiv" ondrop="drop(event)" ondragover="allowDrop(event)">
+		</div>
+	</div>
+
+
+	<div id="Div3">
+		<div>
+		</div>
+		<div id="code"></div>
+		<div>
+			<input id="savingName" placeholder="Specify a filename..." />
+			<button id="download" onclick="downloadFile()">Download file</button>
+		</div>
+	</div>
+</body>
+</html>

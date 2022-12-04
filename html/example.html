@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html>
+        <head>
+        <title>CRUDS</title>
+        </head>
+    <body>
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+            <script >
+                
+            $(document).ready(function() {
+                        $("#searchButton").click(function(){
+                                $("#loadHere").load("cruds.php?searchAccountNumber=" + $("#searchAccountNumber").val() +"&searchButton=searchButton");
+                        });
+
+                        $("#displayButton").click(function(){
+                                $("#loadAllData").load("cruds.php?displayButton=displayButton");
+                        });
+
+                        $("#insertButton").click(function(){
+                                $("#loadInsertData").load("cruds.php?insertAccountNumber=" + $("#insertAccountNumber").val() +"&insertName=" + $("#insertName").val() +"&insertBalance=" + $("#insertBalance").val()+"&insertButton=insertButton");
+                        });
+
+                        $("#updateButton").click(function(){
+                                $("#loadUpdateData").load("cruds.php?updateAccountNumber=" + $("#updateAccountNumber").val() +"&updateName=" + $("#updateName").val() +"&updateBalance=" + $("#updateBalance").val()+"&updateButton=updateButton");
+                        });
+
+                        // $(document).ready(function() {
+                        $("#deleteButton").click(function(){
+                                $("#loadDeleteData").load("cruds.php?deleteAccountNumber=" + $("#deleteAccountNumber").val() +"&deleteButton=deleteButton");
+                        });
+                });
+
+            </script>
+    </body>
+ 
+     <form action="CRUDS.php" method="get">
+            <input type="text" name="searchAccountNumber" id="searchAccountNumber">
+            <input type="submit" name="searchButton" id="searchButton" value="searchButton"><br>
+            <p id="loadHere"></p>
+
+            <input type="submit" name="displayButton" id="displayButton" value="displayButton"><br>
+            <p id="loadAllData"></p>
+
+            <input type="text" name="insertAccountNumber" id="insertAccountNumber">
+            <input type="text" name="insertName" id="insertName">
+            <input type="text" name="insertBalance" id="insertBalance">
+            <input type="submit" name="insertButton" id="insertButton" value="insertButton"><br>
+            <p id="loadInsertData"></p>
+
+            <input type="text" name="updateAccountNumber" id="updateAccountNumber">
+            <input type="text" name="updateName" id="updateName">
+            <input type="text" name="updateBalance" id="updateBalance">
+            <input type="submit" name="updateButton" id="updateButton" value="updateButton"><br>
+            <p id="loadUpdateData"></p>
+
+            <input type="text" name="deleteAccountNumber" id="deleteAccountNumber">
+            <input type="submit" name="deleteButton" id="deleteButton" value="deleteButton"><br>
+            <p id="loadDeleteData"></p>
+            
+    </form> 
+ </html> 
+
+
+
+
+
+<!DOCTYPE html>
+<html>
+        <head>
+        <title>CRUDS</title>
+        </head>
+    <body>
+                <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+            <script >
+
+            $(document).ready(function() {
+                        $("#searchButton").click(function(){
+                                $("#loadHere").load("search.php?searchAccountNumber=" + $("#searchAccountNumber").val() +"&searchButton=searchButton");
+
+                                $("#searchButton1").hide();
+                                $("#loadHere").show();
+
+                        });
+
+                        $("#displayButton").click(function(){
+                                $("#loadHere").load("cruds.php?displayButton=displayButton");
+                                $("div").hide();
+
+                                $("#loadHere").show();
+                        });
+
+                        $("#insertButton").click(function(){
+                        $("#loadHere").load("cruds.php?insertAccountNumber=" + $("#insertAccountNumber").val() +"&insertName=" + $("#insertName").val() +"&insertBalance=" + $("#insertBalance").val()+"&insertButton=insertButton");
+
+                                $("#insertButton1").hide();
+                                $("#loadHere").show();
+                        
+
+                        });
+
+                        $("#updateButton").click(function(){
+                                $("#loadHere").load("cruds.php?updateAccountNumber=" + $("#updateAccountNumber").val() +"&updateName=" + $("#updateName").val() +"&updateBalance=" + $("#updateBalance").val()+"&updateButton=updateButton");
+                                $("#updateButton1").hide();
+                                $("#loadHere").show();
+                        });
+
+                        //        
+                                $("#search").click(function()
+                                {
+                                        $("div").hide();
+                                        $("#loadHere").hide();  
+                                        $("#searchButton1").show();
+                                        // $("#loadHere").show();
+                                });
+                                 $("#insert").click(function()
+                                {
+                                        $("div").hide();
+                                        $("#loadHere").hide();
+                                        $("#insertButton1").show();
+                                });
+                                  $("#update").click(function()
+                                {
+                                        $("div").hide();
+                                        $("#loadHere").hide();
+                                        $("#updateButton1").show();
+                                });
+                                
+                                   $("#searchButton1").hide();
+                                   $("#insertButton1").hide();
+                                   $("#updateButton1").hide();
+                                   // $("#deleteButton1").hide();
+
+                });
+
+            </script>
+    </body>
+    <button id="search"><span class="glyphicon glyphicon-search"></span>Search</button>
+    <button id="insert">Insert</button>
+    <button id="update"><span class="glyphicon glyphicon-pencil"></span>Update</button>
+    <!-- <button id="delete"><span class="glyphicon glyphicon-trash"></span>Delete</button> -->
+     <input type="submit" name="displayButton" id="displayButton" value="displayButton"><br>
+
+        <div id="searchButton1">
+                        Enter Account Number:
+            <input type="text" name="searchAccountNumber" id="searchAccountNumber">
+            <button name="searchButton" id="searchButton" value="searchButton" ><span class="glyphicon glyphicon-search"></span></button><br>
+        </div>
+       
+
+        <div id="insertButton1">
+                Account Number:
+            <input type="text" name="insertAccountNumber" id="insertAccountNumber"><br>
+                Customer Name:
+            <input type="text" name="insertName" id="insertName"><br>
+                Balance:
+            <input type="text" name="insertBalance" id="insertBalance"><br>
+            <input type="submit" name="insertButton" id="insertButton" value="insertButton"><br>
+        </div>
+
+        <div id="updateButton1">
+                 Account Number:
+            <input type="text" name="updateAccountNumber" id="updateAccountNumber"><br>
+                 Customer Name:
+            <input type="text" name="updateName" id="updateName"><br>
+                 Balance:
+            <input type="text" name="updateBalance" id="updateBalance"><br>
+                        <button name="updateButton" id="updateButton" value="updateButton"><span class="glyphicon glyphicon-pencil"></span></button><br>
+        </div>
+
+       <p id="loadHere"></p>
+
+    <!-- </form> -->
+</html>
+
+
+
+
+<!-- <!DOCTYPE html>
+<html>
+        <head>
+        <title>CRUDS</title>
+        </head>
+    <body>
+                <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+            <script >
+
+            $(document).ready(function() {
+                        $("#searchButton").click(function(){
+                                $("#loadHere").load("cruds.php?searchAccountNumber=" + $("#searchAccountNumber").val() +"&searchButton=searchButton");
+
+                                $("#searchButton1").hide();
+                                $("#loadHere").show();
+
+                        });
+
+                        $("#displayButton").click(function(){
+                                $("#loadHere").load("cruds.php?displayButton=displayButton");
+                                $("div").hide();
+
+                                $("#loadHere").show();
+                        });
+
+                        $("#insertButton").click(function(){
+                        $("#loadHere").load("cruds.php?insertAccountNumber=" + $("#insertAccountNumber").val() +"&insertName=" + $("#insertName").val() +"&insertBalance=" + $("#insertBalance").val()+"&insertButton=insertButton");
+
+                                $("#insertButton1").hide();
+                                $("#loadHere").show();
+                        
+
+                        });
+
+                        $("#updateButton").click(function(){
+                                $("#loadHere").load("cruds.php?updateAccountNumber=" + $("#updateAccountNumber").val() +"&updateName=" + $("#updateName").val() +"&updateBalance=" + $("#updateBalance").val()+"&updateButton=updateButton");
+                                $("#updateButton1").hide();
+                                $("#loadHere").show();
+                        });
+
+                        //         $("#deleteButton").click(function(){
+                        //         $("#loadHere").load("cruds.php?deleteAccountNumber=" + $("#deleteAccountNumber").val() +"&deleteButton=deleteButton");
+                        //         $("div").hide();
+                        //         $("#loadHere").show();
+                        // });
+                                $("#search").click(function()
+                                {
+                                        $("div").hide();
+                                        $("#loadHere").hide();  
+                                        $("#searchButton1").show();
+                                        // $("#loadHere").show();
+                                });
+                                 $("#insert").click(function()
+                                {
+                                        $("div").hide();
+                                        $("#loadHere").hide();
+                                        $("#insertButton1").show();
+                                });
+                                  $("#update").click(function()
+                                {
+                                        $("div").hide();
+                                        $("#loadHere").hide();
+                                        $("#updateButton1").show();
+                                });
+                                //    $("#delete").click(function()
+                                // {
+                                //      $("div").hide();
+                                //      $("#loadHere").hide();
+                                //      $("#deleteButton1").show();
+                                // });
+                                   $("#searchButton1").hide();
+                                   $("#insertButton1").hide();
+                                   $("#updateButton1").hide();
+                                   // $("#deleteButton1").hide();
+
+                });
+
+            </script>
+    </body>
+    <button id="search"><span class="glyphicon glyphicon-search"></span>Search</button>
+    <button id="insert">Insert</button>
+    <button id="update"><span class="glyphicon glyphicon-pencil"></span>Update</button>
+    <-- <button id="delete"><span class="glyphicon glyphicon-trash"></span>Delete</button> -->
+     <!-- <input type="submit" name="displayButton" id="displayButton" value="displayButton"><br>
+
+        <div id="searchButton1">
+                        Enter Account Number:
+            <input type="text" name="searchAccountNumber" id="searchAccountNumber">
+            <button name="searchButton" id="searchButton" value="searchButton" ><span class="glyphicon glyphicon-search"></span></button><br>
+            <!- <p id="loadHere"></p> -->
+        <!-- </div>  -->
+        <!-- <div id="displayButton1"> -->
+           <!--  <input type="submit" name="displayButton" id="displayButton" value="displayButton"><br> -->
+            <!-- <p id="loadAllData"></p> -->
+        <!-- </div> -->
+
+        <!-- <div id="insertButton1">
+                Account Number:
+            <input type="text" name="insertAccountNumber" id="insertAccountNumber"><br>
+                Customer Name:
+            <input type="text" name="insertName" id="insertName"><br>
+                Balance:
+            <input type="text" name="insertBalance" id="insertBalance"><br>
+            <input type="submit" name="insertButton" id="insertButton" value="insertButton"><br> -->
+            <!-- <p id="loadInsertData"></p> -->
+        <!-- </div> -->
+
+       <!--  <div id="updateButton1">
+                 Account Number:
+            <input type="text" name="updateAccountNumber" id="updateAccountNumber"><br>
+                 Customer Name:
+            <input type="text" name="updateName" id="updateName"><br>
+                 Balance:
+            <input type="text" name="updateBalance" id="updateBalance"><br>
+                        <button name="updateButton" id="updateButton" value="updateButton"><span cl --><!-- ass="glyphicon glyphicon-pencil"></span></button><br>  -->
+                <!-- <p id="loadUpdateData"></p>
+        </div>
+
+       <--  <div id="deleteButton1">
+                Account Number:
+            <input type="text" name="deleteAccountNumber" id="deleteAccountNumber">
+            <button name --><!-- ="deleteButton" id="deleteButton" value="deleteButton"><span class="glyphicon glyphicon-trash"></span></button><br> -->
+                <!-- <p id="loadDeleteData"></p>
+       <!- </div> -->
+       <!-- <p id="loadHere"></p> -->
+
+    <!-- </form> -->
+<!-- </html>  -->
